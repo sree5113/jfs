@@ -1,0 +1,100 @@
+mysql> CREATE DATABASE VASU;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE VASU;
+Database changed
+
+mysql> CREATE TABLE DEPT(
+    -> D_ID INT,
+    -> D_NAME VARCHAR(32) NOT NULL,
+    -> PRIMARY KEY(D_ID));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO DEPT
+    -> VALUES(101,'HR'),
+    -> (102,'SALES'),
+    -> (103,'SECURITY'),
+    -> (104,'ACC'),
+    -> (105,'FINANCE');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> DESC DEPT;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| D_ID   | int         | NO   | PRI | NULL    |       |
+| D_NAME | varchar(32) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM DEPT;
++------+----------+
+| D_ID | D_NAME   |
++------+----------+
+|  101 | HR       |
+|  102 | SALES    |
+|  103 | SECURITY |
+|  104 | ACC      |
+|  105 | FINANCE  |
++------+----------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE SALARIES(
+    -> AMOUNT FLOAT,
+    -> PRIMARY KEY(AMOUNT)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO SALARIES
+    -> VALUES(20000),
+    -> (25000),
+    -> (30000),
+    -> (35000),
+    -> (40000),
+    -> (45000),
+    -> (50000);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE EMPLOYEES(
+    -> E_ID INT,
+    -> E_NAME VARCHAR(32),
+    -> E_DEPT INT,
+    -> E_SAL FLOAT,
+    -> PRIMARY KEY(E_ID),
+    -> foreign key(E_DEPT) references DEPT(D_ID),
+    -> foreign key(E_SAL) references SALARIES(AMOUNT));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DESC EMPLOYEES;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| E_ID   | int         | NO   | PRI | NULL    |       |
+| E_NAME | varchar(32) | YES  |     | NULL    |       |
+| E_DEPT | int         | YES  | MUL | NULL    |       |
+| E_SAL  | float       | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES
+    -> VALUES(001,'SREE',102,25000),
+    -> (002,'SAI',104,20000),
+    -> (003,'PRIYA',105,45000),
+    -> (004,'HARIKA',103,50000);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEES;
++------+--------+--------+-------+
+| E_ID | E_NAME | E_DEPT | E_SAL |
++------+--------+--------+-------+
+|    1 | SREE   |    102 | 25000 |
+|    2 | SAI    |    104 | 20000 |
+|    3 | PRIYA  |    105 | 45000 |
+|    4 | HARIKA |    103 | 50000 |
++------+--------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql>

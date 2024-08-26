@@ -1,0 +1,31 @@
+mysql> select * from data;
++------+------+----------+------------+---------+
+| id   | name | location | department | salary  |
++------+------+----------+------------+---------+
+|    1 | RAJ  | DELHI    | DEVOP      |  200000 |
+|    2 | RAVI | KOLKATA  | HR         |  300000 |
+|    3 | TEJA | HYD      | MANAGER    | 1000000 |
++------+------+----------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> insert into data
+    -> values(004,'RAHUL','DELHI','DEVOP',200000),
+    -> (005,'VISHAL','KOLKATA','HR',300000),
+    -> (006,'TAKHUR','HYD','MANAGER',1000000);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from data;
++------+--------+----------+------------+---------+
+| id   | name   | location | department | salary  |
++------+--------+----------+------------+---------+
+|    1 | RAJ    | DELHI    | DEVOP      |  200000 |
+|    2 | RAVI   | KOLKATA  | HR         |  300000 |
+|    3 | TEJA   | HYD      | MANAGER    | 1000000 |
+|    4 | RAHUL  | DELHI    | DEVOP      |  200000 |
+|    5 | VISHAL | KOLKATA  | HR         |  300000 |
+|    6 | TAKHUR | HYD      | MANAGER    | 1000000 |
++------+--------+----------+------------+---------+
+6 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,92 @@
+mysql> create table business(
+    -> id int,
+    -> name varchar(23),
+    -> salary float,
+    -> date int,
+    -> branch loc varchar
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loc varchar
+)' at line 6
+mysql> create table business(
+    -> id int,
+    -> name varchar(23),
+    -> salary float,
+    -> date int,
+    -> branch loc varchar(33)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loc varchar(33)
+)' at line 6
+mysql> create table business(
+    -> id int,
+    -> name varchar(23),
+    -> salary float,
+    -> date int,
+    -> location varchar(33)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from business;
+Empty set (0.00 sec)
+
+mysql> insert into business
+    -> valuse(001,'ravi',20000,01/08/24,'delhi'),
+    -> ^C
+mysql> insert into business
+    -> values(001,'ravi',20000,01/08/24,'delhi'),
+    -> values(002,'basha',25000,01/06/24,'J&K'),
+    -> values(002,'basha',25000,01/06/24,'J&K');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(002,'basha',25000,01/06/24,'J&K'),
+values(002,'basha',25000,01/06/24,'J&K' at line 3
+mysql> insert into business
+    -> values(001,'ravi',20000,01/08/24,'delhi'),
+    -> (002,'basha',25000,01/06/24,'J&K'),
+    -> (003,'raj',75000,08/06/20,'hyd');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from business;
++------+-------+--------+------+----------+
+| id   | name  | salary | date | location |
++------+-------+--------+------+----------+
+|    1 | ravi  |  20000 |    0 | delhi    |
+|    2 | basha |  25000 |    0 | J&K      |
+|    3 | raj   |  75000 |    0 | hyd      |
++------+-------+--------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into business(id,name)
+    -> values(004,'jack');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> selest * from business;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selest * from business' at line 1
+mysql> select * from business;
++------+-------+--------+------+----------+
+| id   | name  | salary | date | location |
++------+-------+--------+------+----------+
+|    1 | ravi  |  20000 |    0 | delhi    |
+|    2 | basha |  25000 |    0 | J&K      |
+|    3 | raj   |  75000 |    0 | hyd      |
+|    4 | jack  |   NULL | NULL | NULL     |
++------+-------+--------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> delete from business where id=4;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from business;
++------+-------+--------+------+----------+
+| id   | name  | salary | date | location |
++------+-------+--------+------+----------+
+|    1 | ravi  |  20000 |    0 | delhi    |
+|    2 | basha |  25000 |    0 | J&K      |
+|    3 | raj   |  75000 |    0 | hyd      |
++------+-------+--------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> drop table business;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from business;
+ERROR 1146 (42S02): Table '8am.business' doesn't exist
+mysql>

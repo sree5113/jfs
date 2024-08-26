@@ -1,0 +1,94 @@
+mysql> create table data(
+    -> ID INT,
+    -> NAME VARCHAR(32) NOT NULL,
+    -> SIZE INT NOT NULL,
+    -> DATE INT,
+    -> LOCATION VARCHAR(32),
+    -> PRIZE FLOAT,
+    -> PRIMARY KEY(ID)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESC DATA;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ID       | int         | NO   | PRI | NULL    |       |
+| NAME     | varchar(32) | NO   |     | NULL    |       |
+| SIZE     | int         | NO   |     | NULL    |       |
+| DATE     | int         | YES  |     | NULL    |       |
+| LOCATION | varchar(32) | YES  |     | NULL    |       |
+| PRIZE    | float       | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO DATA
+    -> VALUES(004,'S511',23,05/01/22,'HYD',2100),
+    -> (001,'S550',20,06/09/20,'HYD',4100),
+    -> (013,'S551',32,07/09/20,'DELHI',700),
+    -> (161,'S673',28,23/05/21,'BANGLORE',1500);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM DATA;
++-----+------+------+------+----------+-------+
+| ID  | NAME | SIZE | DATE | LOCATION | PRIZE |
++-----+------+------+------+----------+-------+
+|   1 | S550 |   20 |    0 | HYD      |  4100 |
+|   4 | S511 |   23 |    0 | HYD      |  2100 |
+|  13 | S551 |   32 |    0 | DELHI    |   700 |
+| 161 | S673 |   28 |    0 | BANGLORE |  1500 |
++-----+------+------+------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM DATA;
+Query OK, 4 rows affected (0.01 sec)
+
+mysql> SELECT * FROM DATA;
+Empty set (0.00 sec)
+
+mysql> VALUES(004,'S511',23,05/01/22,'HYD',2100),
+    -> (001,'S550',20,06/09/20,'HYD',4100),
+    -> (013,'S551',32,07/09/20,'DELHI',700),
+    -> (161,'S673',28,23/05/21,'BANGLORE',1500);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(004,'S511',23,05/01/22,'HYD',2100),
+(001,'S550',20,06/09/20,'HYD',4100),
+(013,'' at line 1
+mysql> INSERT INTO DATA
+    -> VALUES(004,'S511',23,05/01/22,'HYD',2100),
+    -> (001,'S550',20,06/09/20,'HYD',4100),
+    -> (013,'S551',32,07/09/20,'DELHI',700),
+    -> (161,'S673',28,23/05/21,'BANGLORE',1500);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM DATA;
++-----+------+------+------+----------+-------+
+| ID  | NAME | SIZE | DATE | LOCATION | PRIZE |
++-----+------+------+------+----------+-------+
+|   1 | S550 |   20 |    0 | HYD      |  4100 |
+|   4 | S511 |   23 |    0 | HYD      |  2100 |
+|  13 | S551 |   32 |    0 | DELHI    |   700 |
+| 161 | S673 |   28 |    0 | BANGLORE |  1500 |
++-----+------+------+------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM DATA WHERE ID=1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM DATA;
++-----+------+------+------+----------+-------+
+| ID  | NAME | SIZE | DATE | LOCATION | PRIZE |
++-----+------+------+------+----------+-------+
+|   4 | S511 |   23 |    0 | HYD      |  2100 |
+|  13 | S551 |   32 |    0 | DELHI    |   700 |
+| 161 | S673 |   28 |    0 | BANGLORE |  1500 |
++-----+------+------+------+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DROP TABLE DATA;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SELECT * FROM DATA;
+ERROR 1146 (42S02): Table '8pm.data' doesn't exist
+mysql>

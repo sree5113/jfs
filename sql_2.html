@@ -1,0 +1,58 @@
+mysql> create table info(
+    -> id int,
+    -> name varchar(22),
+    -> location varchar(32)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into info
+    -> values(001,'raj','delhi'),
+    -> (002,'tej','banglore'),
+    -> (003,'paul','goa');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from info;
++------+------+----------+
+| id   | name | location |
++------+------+----------+
+|    1 | raj  | delhi    |
+|    2 | tej  | banglore |
+|    3 | paul | goa      |
++------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> delete from table info where id=3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table info where id=3' at line 1
+mysql> delete from info where id=3;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from info;
++------+------+----------+
+| id   | name | location |
++------+------+----------+
+|    1 | raj  | delhi    |
+|    2 | tej  | banglore |
++------+------+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into info(id,name)
+    -> values(3,'vasu');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from info;
++------+------+----------+
+| id   | name | location |
++------+------+----------+
+|    1 | raj  | delhi    |
+|    2 | tej  | banglore |
+|    3 | vasu | NULL     |
++------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> drop table info;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from info;
+ERROR 1146 (42S02): Table '8pm.info' doesn't exist
+mysql>
